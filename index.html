@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zone StreamLive</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Style général */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00ff7f;
+        }
+
+        main {
+            padding: 20px;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Section vidéo */
+        .video-player {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .video-player video {
+            width: 80%;
+            max-width: 800px;
+            border: 2px solid #333;
+        }
+
+        .video-player.active {
+            display: flex;
+        }
+
+        /* Animations */
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+        }
+
+        /* Image en haut à gauche */
+        .site-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Animation du bouton lecture */
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00ff7f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barre de navigation -->
+    <nav>
+        <img src="image.png" alt="Logo" class="site-logo">
+        <ul>
+            <li><a href="#" onclick="navigateTo('home')">Accueil</a></li>
+            <li><a href="#" onclick="navigateTo('films')">Films</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sections -->
+    <main>
+        <section id="home" class="page active">
+            <h1>Bienvenue sur Zone StreamLive</h1>
+            <p>Sélectionnez un film pour commencer à regarder.</p>
+        </section>
+
+        <section id="films" class="page">
+            <h1>Nos Films</h1>
+            <ul>
+                <li><button onclick="playFilm('films/patpatrouille.mp4')">Pat' Patrouille</button></li>
+                <li><button onclick="playFilm('films/avengers.mp4')">Avengers</button></li>
+                <li><button onclick="playFilm('films/spiderman.mp4')">Spider-Man</button></li>
+            </ul>
+        </section>
+
+        <!-- Lecteur vidéo -->
+        <div id="videoPlayer" class="video-player">
+            <video id="video" controls>
+                <source id="videoSource" src="" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+            <button onclick="closePlayer()">Fermer</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Zone StreamLive | Tous droits réservés</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function navigateTo(sectionId) {
+            // Désactiver toutes les sections
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Activer la section sélectionnée
+            const activePage = document.getElementById(sectionId);
+            activePage.classList.add('active');
+        }
+
+        function playFilm(filmPath) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const video = document.getElementById('video');
+            const videoSource = document.getElementById('videoSource');
+
+            videoSource.src = filmPath;
+            video.load();
+            videoPlayer.classList.add('active');
+        }
+
+        function closePlayer() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const video = document.getElementById('video');
+            
+            video.pause();
+            videoPlayer.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
