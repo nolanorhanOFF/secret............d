@@ -44,42 +44,54 @@
 
         main {
             padding: 20px;
-            height: 80vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        /* Section vidéo */
-        .video-player {
-            display: none;
             flex-direction: column;
             align-items: center;
         }
 
-        .video-player video {
-            width: 80%;
-            max-width: 800px;
-            border: 2px solid #333;
+        /* Style de la sélection de films */
+        .film-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px 0;
         }
 
-        .video-player.active {
-            display: flex;
+        .film-item {
+            text-align: center;
+            cursor: pointer;
         }
 
-        /* Animations */
-        .page {
+        .film-item img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .film-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .film-item h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Section lecteur vidéo */
+        .video-section {
             display: none;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.5s ease;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
         }
 
-        .page.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
+        .video-section iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
         }
 
         /* Responsive */
@@ -105,69 +117,57 @@
 
     <!-- Sections -->
     <main>
+        <!-- Accueil -->
         <section id="home" class="page active">
-            <h1>Bienvenue sur notre site de streaming</h1>
+            <h1>Bienvenue sur Zone Streamlive</h1>
             <p>Sélectionnez un film pour commencer à regarder.</p>
         </section>
 
+        <!-- Sélection de films -->
         <section id="films" class="page">
             <h1>Nos Films</h1>
-            <div class="film-container">
-                <div class="film-item">
-                    <h2>Les Daltons</h2>
-                    <iframe 
-                        width="560" 
-                        height="315" 
-                        src="https://www.youtube.com/embed/zSgoBDW3ri8" 
-                        title="Les Daltons" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+            <div class="film-grid">
+                <!-- Exemple de film : Les Daltons -->
+                <div class="film-item" onclick="playFilm('https://www.youtube.com/embed/zSgoBDW3ri8')">
+                    <img src="affichedaltons.png" alt="Affiche Les Daltons">
+                    <h3>Les Daltons</h3>
+                </div>
+                <!-- Ajoutez d'autres films ici -->
+                <div class="film-item" onclick="playFilm('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <img src="affichefilm2.png" alt="Film Exemple">
+                    <h3>Film Exemple</h3>
                 </div>
             </div>
         </section>
 
         <!-- Lecteur vidéo -->
-        <div id="videoPlayer" class="video-player">
-            <video id="video" controls>
-                <source id="videoSource" src="" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-            <button onclick="closePlayer()">Fermer</button>
+        <div id="videoSection" class="video-section">
+            <iframe id="videoPlayer" src="" allowfullscreen></iframe>
         </div>
     </main>
 
     <!-- JavaScript -->
     <script>
         function navigateTo(sectionId) {
-            // Désactiver toutes les sections
+            // Masquer toutes les sections
             const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
+            pages.forEach(page => page.classList.remove('active'));
 
-            // Activer la section sélectionnée
-            const activePage = document.getElementById(sectionId);
-            activePage.classList.add('active');
+            // Afficher la section sélectionnée
+            document.getElementById(sectionId).classList.add('active');
+
+            // Masquer le lecteur vidéo lors du changement de section
+            document.getElementById('videoSection').style.display = 'none';
+            document.getElementById('videoPlayer').src = '';
         }
 
-        function playFilm(filmPath) {
+        function playFilm(videoUrl) {
+            // Afficher le lecteur vidéo avec l'URL spécifiée
+            const videoSection = document.getElementById('videoSection');
             const videoPlayer = document.getElementById('videoPlayer');
-            const video = document.getElementById('video');
-            const videoSource = document.getElementById('videoSource');
 
-            videoSource.src = filmPath;
-            video.load();
-            videoPlayer.classList.add('active');
-        }
-
-        function closePlayer() {
-            const videoPlayer = document.getElementById('videoPlayer');
-            const video = document.getElementById('video');
-            
-            video.pause();
-            videoPlayer.classList.remove('active');
+            videoPlayer.src = videoUrl;
+            videoSection.style.display = 'block';
         }
     </script>
 </body>
