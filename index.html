@@ -5,68 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zone Streamlive</title>
     <style>
-        /* Style général */
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        nav {
+        header {
             background-color: #333;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 0;
         }
 
-        nav ul {
-            list-style: none;
+        header h1 {
+            margin: 0;
+        }
+
+        .film-list {
             display: flex;
             justify-content: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            margin: 0 15px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #00ff7f;
-        }
-
-        main {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Style de la sélection de films */
-        .film-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
+            flex-wrap: wrap;
             margin: 20px 0;
         }
 
         .film-item {
+            margin: 20px;
             text-align: center;
-            cursor: pointer;
         }
 
         .film-item img {
-            width: 100%;
+            width: 300px;
             border-radius: 10px;
+            cursor: pointer;
             transition: transform 0.3s ease;
         }
 
@@ -74,100 +45,89 @@
             transform: scale(1.05);
         }
 
-        .film-item h3 {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-
-        /* Section lecteur vidéo */
-        .video-section {
+        #filmPlayer {
             display: none;
-            width: 100%;
-            max-width: 1000px;
-            margin-top: 20px;
+            margin: 20px auto;
+            width: 80%;
         }
 
-        .video-section iframe {
+        iframe {
             width: 100%;
-            height: 500px;
+            height: 450px;
             border: none;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-            }
+        .back-button {
+            display: none;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
 
-            nav li {
-                margin: 10px 0;
-            }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <!-- Barre de navigation -->
-    <nav>
-        <ul>
-            <li><a href="#" onclick="navigateTo('home')">Accueil</a></li>
-            <li><a href="#" onclick="navigateTo('films')">Films</a></li>
-        </ul>
-    </nav>
+    <header>
+        <h1>Bienvenue sur Zone Streamlive</h1>
+        <p>Sélectionnez un film pour commencer à regarder</p>
+    </header>
 
-    <!-- Sections -->
-    <main>
-        <!-- Accueil -->
-        <section id="home" class="page active">
-            <h1>Bienvenue sur Zone Streamlive</h1>
-            <p>Sélectionnez un film pour commencer à regarder.</p>
-        </section>
-
-        <!-- Sélection de films -->
-        <section id="films" class="page">
-            <h1>Nos Films</h1>
-            <div class="film-grid">
-                <!-- Exemple de film : Les Daltons -->
-                <div class="film-item" onclick="playFilm('https://www.youtube.com/embed/zSgoBDW3ri8')">
-                    <img src="affichedaltons.png" alt="Affiche Les Daltons">
-                    <h3>Les Daltons</h3>
-                </div>
-                <!-- Ajoutez d'autres films ici -->
-                <div class="film-item" onclick="playFilm('https://www.youtube.com/embed/dQw4w9WgXcQ')">
-                    <img src="affichefilm2.png" alt="Film Exemple">
-                    <h3>Film Exemple</h3>
-                </div>
-            </div>
-        </section>
-
-        <!-- Lecteur vidéo -->
-        <div id="videoSection" class="video-section">
-            <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+    <div class="film-list">
+        <div class="film-item" onclick="showFilm('https://www.youtube.com/embed/zSgoBDW3ri8')">
+            <img src="affichedaltons.png" alt="Les Daltons">
+            <p>Les Daltons</p>
         </div>
-    </main>
+        <!-- Ajoutez d'autres films ici si nécessaire -->
+    </div>
 
-    <!-- JavaScript -->
+    <div id="filmPlayer">
+        <iframe id="filmFrame" src="" allowfullscreen></iframe>
+        <a class="back-button" href="#" onclick="goBack()">Retour à la liste</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Zone Streamlive. Tous droits réservés.</p>
+    </footer>
+
     <script>
-        function navigateTo(sectionId) {
-            // Masquer toutes les sections
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+        function showFilm(videoUrl) {
+            // Afficher le lecteur et charger la vidéo
+            document.getElementById('filmPlayer').style.display = 'block';
+            document.getElementById('filmFrame').src = videoUrl;
 
-            // Afficher la section sélectionnée
-            document.getElementById(sectionId).classList.add('active');
+            // Masquer la liste des films
+            const filmList = document.querySelector('.film-list');
+            filmList.style.display = 'none';
 
-            // Masquer le lecteur vidéo lors du changement de section
-            document.getElementById('videoSection').style.display = 'none';
-            document.getElementById('videoPlayer').src = '';
+            // Afficher le bouton retour
+            const backButton = document.querySelector('.back-button');
+            backButton.style.display = 'inline-block';
         }
 
-        function playFilm(videoUrl) {
-            // Afficher le lecteur vidéo avec l'URL spécifiée
-            const videoSection = document.getElementById('videoSection');
-            const videoPlayer = document.getElementById('videoPlayer');
+        function goBack() {
+            // Réinitialiser le lecteur et revenir à la liste des films
+            document.getElementById('filmPlayer').style.display = 'none';
+            document.getElementById('filmFrame').src = '';
 
-            videoPlayer.src = videoUrl;
-            videoSection.style.display = 'block';
+            const filmList = document.querySelector('.film-list');
+            filmList.style.display = 'flex';
+
+            const backButton = document.querySelector('.back-button');
+            backButton.style.display = 'none';
         }
     </script>
 </body>
