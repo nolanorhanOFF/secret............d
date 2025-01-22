@@ -15,8 +15,8 @@
             background-image: url('lamain.png');
             background-repeat: no-repeat;
             background-position: bottom right;
-            background-size: cover; /* Assurez-vous que l'image couvre tout l'écran */
-            opacity: 0.8; /* Augmentez l'opacité de l'image */
+            background-size: cover; 
+            opacity: 0.8; 
         }
         header {
             background-color: #222;
@@ -68,6 +68,17 @@
             margin: 0;
             font-size: 0.9rem;
             color: #888;
+        }
+        .back-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -124,6 +135,7 @@
     <footer>
         <p>&copy; 2025 Streaming Mercredi</p>
     </footer>
+    <a href="index.html" class="back-link">Retour à l'Index</a>
 
     <script>
         function showEpisode(episodeNumber) {
