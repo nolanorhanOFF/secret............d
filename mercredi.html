@@ -41,15 +41,25 @@
             transform: scale(1.05);
             background-color: #444;
         }
-        .episode-item iframe {
+        .episode-item a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+        .video-container {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+        .video-container.active {
+            display: block;
+        }
+        .video-container iframe {
             width: 100%;
-            height: 220px;
+            max-width: 800px;
+            height: 450px;
             border: none;
             border-radius: 5px;
-        }
-        .episode-item p {
-            margin: 10px 0 0;
-            font-size: 1.2rem;
         }
         footer {
             background-color: #222;
@@ -68,14 +78,44 @@
     <header>
         <h1>Mercredi - Saison 1</h1>
     </header>
+
     <div class="episodes">
         <div class="episode-item">
-            <iframe src="https://uqload.net/embed-36pw62e5akc3.html" frameborder="0" allowfullscreen></iframe>
-            <p>Épisode 1</p>
+            <a href="#" onclick="showEpisode(1)">Épisode 1</a>
         </div>
+        <div class="episode-item">
+            <a href="#" onclick="showEpisode(2)">Épisode 2</a>
+        </div>
+        <!-- Ajoutez plus d'épisodes ici -->
     </div>
+
+    <!-- Conteneur vidéo pour les épisodes -->
+    <div id="episode1" class="video-container">
+        <h2>Épisode 1</h2>
+        <iframe src="https://uqload.net/embed-36pw62e5akc3.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode2" class="video-container">
+        <h2>Épisode 2</h2>
+        <iframe src="https://uqload.net/embed-cklu3vx39f3t.html" allowfullscreen></iframe>
+    </div>
+
     <footer>
         <p>&copy; 2025 Streaming Mercredi</p>
     </footer>
+
+    <script>
+        function showEpisode(episodeNumber) {
+            // Cache toutes les vidéos
+            const videos = document.querySelectorAll('.video-container');
+            videos.forEach(video => video.classList.remove('active'));
+
+            // Affiche la vidéo sélectionnée
+            const selectedVideo = document.getElementById(`episode${episodeNumber}`);
+            if (selectedVideo) {
+                selectedVideo.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
 </body>
 </html>
