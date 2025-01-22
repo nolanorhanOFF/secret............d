@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercredi - Saison 1</title>
+    <title>Mercredi - Épisodes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,39 +22,30 @@
             font-size: 2.5rem;
             color: #fff;
         }
-        .episodes {
+        .nav-links {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            padding: 20px;
+            background-color: #222;
+            padding: 10px 0;
         }
-        .episode-item {
-            background-color: #333;
-            border-radius: 8px;
-            margin: 15px;
-            padding: 15px;
-            width: 350px;
-            text-align: center;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .episode-item:hover {
-            transform: scale(1.05);
-            background-color: #444;
-        }
-        .episode-item a {
-            text-decoration: none;
+        .nav-links a {
             color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
             font-size: 1.2rem;
         }
-        .video-container {
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .episode-container {
             display: none;
             padding: 20px;
             text-align: center;
         }
-        .video-container.active {
+        .episode-container.active {
             display: block;
         }
-        .video-container iframe {
+        .episode-container iframe {
             width: 100%;
             max-width: 800px;
             height: 450px;
@@ -76,27 +67,52 @@
 </head>
 <body>
     <header>
-        <h1>Mercredi - Saison 1</h1>
+        <h1>Mercredi - Épisodes</h1>
     </header>
 
-    <div class="episodes">
-        <div class="episode-item">
-            <a href="#" onclick="showEpisode(1)">Épisode 1</a>
-        </div>
-        <div class="episode-item">
-            <a href="#" onclick="showEpisode(2)">Épisode 2</a>
-        </div>
-        <!-- Ajoutez plus d'épisodes ici -->
-    </div>
+    <nav class="nav-links">
+        <a href="#" onclick="showEpisode(1)">Épisode 1</a>
+        <a href="#" onclick="showEpisode(2)">Épisode 2</a>
+        <a href="#" onclick="showEpisode(3)">Épisode 3</a>
+        <a href="#" onclick="showEpisode(4)">Épisode 4</a>
+        <a href="#" onclick="showEpisode(5)">Épisode 5</a>
+        <a href="#" onclick="showEpisode(6)">Épisode 6</a>
+        <a href="#" onclick="showEpisode(7)">Épisode 7</a>
+        <a href="#" onclick="showEpisode(8)">Épisode 8</a>
+    </nav>
 
-    <!-- Conteneur vidéo pour les épisodes -->
-    <div id="episode1" class="video-container">
+    <!-- Conteneurs des épisodes -->
+    <div id="episode1" class="episode-container">
         <h2>Épisode 1</h2>
         <iframe src="https://uqload.net/embed-36pw62e5akc3.html" allowfullscreen></iframe>
     </div>
-    <div id="episode2" class="video-container">
+    <div id="episode2" class="episode-container">
         <h2>Épisode 2</h2>
         <iframe src="https://uqload.net/embed-cklu3vx39f3t.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode3" class="episode-container">
+        <h2>Épisode 3</h2>
+        <iframe src="https://uqload.net/embed-m9x0aqci1unk.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode4" class="episode-container">
+        <h2>Épisode 4</h2>
+        <iframe src="https://uqload.net/embed-9fd23a43riri.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode5" class="episode-container">
+        <h2>Épisode 5</h2>
+        <iframe src="https://uqload.net/embed-xt9giucnmql0.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode6" class="episode-container">
+        <h2>Épisode 6</h2>
+        <iframe src="https://uqload.net/embed-ubyfvl5aqc2s.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode7" class="episode-container">
+        <h2>Épisode 7</h2>
+        <iframe src="https://uqload.net/embed-lxxd33bv7tim.html" allowfullscreen></iframe>
+    </div>
+    <div id="episode8" class="episode-container">
+        <h2>Épisode 8</h2>
+        <iframe src="https://uqload.net/embed-36pw62e5akc3.html" allowfullscreen></iframe>
     </div>
 
     <footer>
@@ -106,13 +122,13 @@
     <script>
         function showEpisode(episodeNumber) {
             // Cache toutes les vidéos
-            const videos = document.querySelectorAll('.video-container');
-            videos.forEach(video => video.classList.remove('active'));
+            const episodes = document.querySelectorAll('.episode-container');
+            episodes.forEach(ep => ep.classList.remove('active'));
 
-            // Affiche la vidéo sélectionnée
-            const selectedVideo = document.getElementById(`episode${episodeNumber}`);
-            if (selectedVideo) {
-                selectedVideo.classList.add('active');
+            // Affiche l'épisode sélectionné
+            const selectedEpisode = document.getElementById(`episode${episodeNumber}`);
+            if (selectedEpisode) {
+                selectedEpisode.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
