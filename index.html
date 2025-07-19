@@ -1,335 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streamlivezone</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streamlivezone</title>
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --hover-color: #0056b3;
+      --bg-dark: #222;
+      --text-light: #fff;
+    }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px 0;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        header h1 {
-            margin: 0;
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
 
-        .film-list {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
+    header {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      padding: 20px 10px;
+      text-align: center;
+    }
 
-        .film-item {
-            margin: 20px;
-            text-align: center;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
 
-        .film-item img {
-            width: 300px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+    header p {
+      margin-top: 5px;
+      font-size: 1rem;
+    }
 
-        .film-item img:hover {
-            transform: scale(1.05);
-        }
+    .film-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-        #filmPlayer {
-            display: none;
-            margin: 20px auto;
-            width: 80%;
-        }
+    .film-item {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
 
-        iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-        }
+    .film-item:hover {
+      transform: scale(1.05);
+    }
 
-        .back-button {
-            display: none;
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-        }
+    .film-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-        .back-button:hover {
-            background-color: #0056b3;
-        }
+    .film-item p {
+      margin: 10px 0 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
 
-        footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #666;
-        }
-    </style>
+    #filmPlayer {
+      display: none;
+      padding: 20px;
+      max-width: 90%;
+      margin: auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .back-button {
+      display: none;
+      margin-top: 15px;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      background-color: var(--hover-color);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 20px;
+    }
+
+    @media (max-width: 600px) {
+      iframe {
+        height: 300px;
+      }
+
+      .film-item p {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenue sur Zone Streamlive</h1>
-        <p>Sélectionnez un film pour commencer à regarder</p>
-    </header>
+  <header>
+    <h1>Bienvenue sur Streamlivezone</h1>
+    <p>Sélectionnez un film pour commencer à regarder</p>
+  </header>
 
-    <div class="film-list">        
-    <!-- Film Le Monde de Ralph -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-abst9n5co9ei.html')">
-    <img src="lemonderalph.png" alt="Le Monde de Ralph">
-    <p>Le Monde de Ralph</p>
-</div>
-        
-        <!-- Ancien Super Mario Bros -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-w0p72v8oankp.html')">
-            <img src="anciensupermario.png" alt="Ancien Super Mario Bros">
-            <p>Ancien Super Mario Bros</p>
-        </div>
-
-        <!-- Nouveau Super Mario Bros -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-zybzqp2dmexo.html')">
-            <img src="nouveausupermario.png" alt="Nouveau Super Mario Bros">
-            <p>Nouveau Super Mario Bros</p>
-        </div>
-
-        <!-- Film Suzume -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-2d0wppsz7y44.html')">
-            <img src="suzume.png" alt="Suzume">
-            <p>Suzume</p>
-        </div>
-
-        <!-- Film Spider-Man: Homecoming -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-lqur0htoun2b.html')">
-            <img src="spiderman.png" alt="Spider-Man: Homecoming">
-            <p>Spider-Man: Homecoming</p>
-        </div>
-
-        <!-- Film Annabelle -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-bhuoafh7vaca.html')">
-            <img src="annabelle.png" alt="Annabelle">
-            <p>Annabelle</p>
-        </div>
-
-        <!-- Film Chien et Chat -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-4su3nnv8e1gz.html')">
-            <img src="chienetchat.png" alt="Chien et Chat">
-            <p>Chien et Chat</p>
-        </div>
-
-        <!-- Film Alibi.com 2 -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-th7tftnpmbmr.html')">
-            <img src="alibi2.png" alt="Alibi.com 2">
-            <p>Alibi.com 2</p>
-        </div>
-
-        <!-- Film Barbie -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-lw0oyu5xm84d.html')">
-            <img src="barbie.png" alt="Barbie">
-            <p>Barbie</p>
-        </div>
-
-        <!-- Film Godzilla vs Kong -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-d8b54s55yjkz.html')">
-            <img src="godzillavskong.png" alt="Godzilla vs Kong">
-            <p>Godzilla vs Kong</p>
-        </div>
-
-        <!-- Film The Big Short -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-3wsfa32pw9mi.html')">
-            <img src="thebigshort.png" alt="The Big Short">
-            <p>The Big Short</p>
-        </div>
-
-        <!-- Film La Grande Muraille -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-ykpao6q0vi6r.html')">
-            <img src="lagrandemuraille.png" alt="La Grande Muraille">
-            <p>La Grande Muraille</p>
-        </div>
-
-        <!-- Film Bleu Saphir -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-6ha5erkf4zra.html')">
-            <img src="bleusaphir.png" alt="Bleu Saphir">
-            <p>Bleu Saphir</p>
-        </div>
-
-        <!-- Film Vaiana -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-v9yybjnfsp40.html')">
-            <img src="vaiana.png" alt="Vaiana">
-            <p>Vaiana</p>
-        </div>
-
-        <!-- Film Kick Ass 1 -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-ehll249ore5o.html')">
-            <img src="kickass.png" alt="Kick Ass 1">
-            <p>Kick Ass 1</p>
-        </div>
-
-        <!-- Film Raya et le Dernier Dragon -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-4f4u65xac55w.html')">
-            <img src="raya.png" alt="Raya et le Dernier Dragon">
-            <p>Raya et le Dernier Dragon</p>
-        </div>
-
-        <!-- Film Garfields 2 -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-v7omosj2x8j7.html')">
-            <img src="garfields2.png" alt="Garfields 2">
-            <p>Garfields 2</p>
-       </div>
-
-        <!-- Film Retour vers le Futur -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-jsxypvq3ui54.html')">
-              <img src="retourverslefutur.png" alt="Retour vers le Futur">
-              <p>Retour vers le Futur</p>
-        </div>
-
-    <!-- Film Retour vers le Futur 2 -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-l3cz7ifwkfg3.html')">
-    <img src="retourverslefutur2.png" alt="Retour vers le Futur 2">
-    <p>Retour vers le Futur 2</p>
-</div>
-
-<!-- Film Retour vers le Futur 3 -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-sqk1gdrn4cq1.html')">
-    <img src="retourverslefutur3.png" alt="Retour vers le Futur 3">
-    <p>Retour vers le Futur 3</p>
-</div>
-
-        <!-- Film Un p'tit truc en plus (Artus) -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-j54mnic8kcmx.html')">
-    <img src="unptittrucenplus.png" alt="Un p'tit truc en plus">
-    <p>Un p'tit truc en plus</p>
-</div>
-
-        <!-- Film Titanic -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-px6iyrd3dlr8.html')">
-    <img src="titanic.png" alt="Titanic">
-    <p>Titanic</p>
-</div>
-        
-        <!-- Film Inestimable -->
-        <div class="film-item" onclick="showFilm('https://uqload.net/embed-zwvspv5d56uu.html')">
-            <img src="inestimable.png" alt="Inestimable">
-            <p>Inestimable</p>
-        </div>
-    
-<!-- Catégorie Squid Game -->
-<div class="film-item" onclick="window.location.href='/squidgame/';">
-    <img src="squidgame.png" alt="Squid Game">
-    <p>Squid Game</p>
-</div>
-
-<!-- Film Vice Versa -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-u6511vmcjy0w.html')">
-    <img src="viceversa.png" alt="Vice Versa">
-    <p>Vice Versa</p>
-</div>
-
-        <!-- Film Vice Versa 2 -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-s7mvxpf7wht7.html')">
-    <img src="viceversa2.png" alt="Vice Versa 2">
-    <p>Vice Versa 2</p>
-</div>
-
-<!-- Film Sonic 3 -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-g239m9vd00z8.html')">
-    <img src="sonic3.png" alt="Sonic 3">
-    <p>Sonic 3</p>
-</div>
-
-        <!-- Série Mercredi -->
-<div class="film-item" onclick="window.location.href='mercredi.html'">
-    <img src="mercredi.png" alt="Mercredi">
-    <p>Mercredi</p>
-</div>
-
-                <!-- Série Mercredi -->
-<div class="film-item" onclick="window.location.href='arcane.html'">
-    <img src="Arcane.png" alt="Arcane">
-    <p>Arcane</p>
-</div>
-
-        <!-- Film fnaf -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-tt2ahmd3m5yg.html')">
-    <img src="fnaf.png" alt="fnaf">
-    <p>five night at freddy's</p>
-</div>
-
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-3i2qtqqfy4am.html')">
-    <img src="jack-fnaf.png" alt="Jack et la mécanique">
-    <p>Jack et la mécanique</p>
-</div>
-        
-                <!-- Film hatchi -->
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-v0avcw4li4en.html')">
-    <img src="hatchi.png" alt="hatchi">
-    <p>hatchi</p>
-</div>
-
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-n7v5gpzzei3w.html')">
-    <img src="Lesas1.png" alt="Les As de la Jungle">
-    <p>Les As de la Jungle</p>
-</div>
-
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-2ytyr2lnvfa2.html')">
-    <img src="Lesas2.png" alt="Les As de la Jungle 2">
-    <p>Les As de la Jungle 2</p>
-</div>
-
-<div class="film-item" onclick="showFilm('https://uqload.net/embed-rqvgmn8ipepf.html')">
-    <img src="awake.png" alt="Awake">
-    <p>Awake</p>
-</div>
-    
+  <div class="film-list" id="filmList">
+    <!-- ICI tu gardes tous tes <div class="film-item"> comme tu avais -->
+    <!-- Exemple : -->
+    <div class="film-item" onclick="showFilm('https://uqload.net/embed-abst9n5co9ei.html')">
+      <img src="lemonderalph.png" alt="Le Monde de Ralph" />
+      <p>Le Monde de Ralph</p>
     </div>
-    
-    <div id="filmPlayer">
-        <iframe id="filmFrame" src="" allowfullscreen></iframe>
-        <a class="back-button" href="#" onclick="goBack()">Retour à la liste</a>
-    </div>
+    <!-- ... reste de tes films ici -->
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Streamlivezone. Tous droits réservés.</p>
-    </footer>
+  <div id="filmPlayer">
+    <iframe id="filmFrame" src="" allowfullscreen></iframe>
+    <a class="back-button" href="#" onclick="goBack()">Retour à la liste</a>
+  </div>
 
-    <script>
-        function showFilm(videoUrl) {
-            // Afficher le lecteur et charger la vidéo
-            document.getElementById('filmPlayer').style.display = 'block';
-            document.getElementById('filmFrame').src = videoUrl;
+  <footer>
+    <p>&copy; 2025 Streamlivezone. Tous droits réservés.</p>
+  </footer>
 
-            // Masquer la liste des films
-            const filmList = document.querySelector('.film-list');
-            filmList.style.display = 'none';
+  <script>
+    function showFilm(url) {
+      document.getElementById('filmList').style.display = 'none';
+      document.getElementById('filmFrame').src = url;
+      document.getElementById('filmPlayer').style.display = 'block';
+    }
 
-            // Afficher le bouton retour
-            const backButton = document.querySelector('.back-button');
-            backButton.style.display = 'inline-block';
-        }
-
-        function goBack() {
-            // Réinitialiser le lecteur et revenir à la liste des films
-            document.getElementById('filmPlayer').style.display = 'none';
-            document.getElementById('filmFrame').src = '';
-
-            const filmList = document.querySelector('.film-list');
-            filmList.style.display = 'flex';
-
-            const backButton = document.querySelector('.back-button');
-            backButton.style.display = 'none';
-        }
-    </script>
+    function goBack() {
+      document.getElementById('filmFrame').src = '';
+      document.getElementById('filmPlayer').style.display = 'none';
+      document.getElementById('filmList').style.display = 'grid';
+    }
+  </script>
 </body>
 </html>
