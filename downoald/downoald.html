@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>NetMovies Downloader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      text-align: center;
+      padding: 60px;
+    }
+
+    input, button {
+      padding: 12px;
+      font-size: 18px;
+      width: 80%;
+      max-width: 500px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    input {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    button {
+      background-color: #00e676;
+      color: #000;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>NetMovies Downloader</h1>
+  <p>Colle ton lien Uqload.cx ci-dessous :</p>
+
+  <form id="uqForm">
+    <input type="url" id="uqloadUrl" placeholder="https://uqload.cx/abc123" required />
+    <br>
+    <button type="submit">Télécharger</button>
+  </form>
+
+  <script>
+    document.getElementById('uqForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const inputUrl = document.getElementById('uqloadUrl').value.trim();
+
+      if (!inputUrl.startsWith('https://uqload.cx/')) {
+        alert('Lien invalide. Il doit commencer par https://uqload.cx/');
+        return;
+      }
+
+      const finalUrl = 'http://www.netmovies-downloader.ct.ws/?url=' + encodeURIComponent(inputUrl);
+      window.location.href = finalUrl;
+    });
+  </script>
+</body>
+</html>
