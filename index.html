@@ -1,199 +1,182 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Films & Séries</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StreamZone - Films & Séries</title>
   <style>
     :root {
-      --primary-color: #1e1e2f;
-      --accent-color: #ff4c60;
-      --bg-color: #121212;
-      --text-color: #f4f4f4;
-      --card-bg: #1f1f2e;
-      --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      --bg: #0d0d0d;
+      --primary: #ff4c60;
+      --text: #f0f0f0;
+      --card-bg: #1a1a1a;
+      --hover: #ff99a0;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
       margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      animation: fadeIn 1s ease-in;
+    }
+
+    header {
+      background-color: var(--primary);
       padding: 20px;
-      animation: fadeInBody 1s ease-in;
+      text-align: center;
     }
 
-    h1, h2, h3, h4 {
-      color: var(--accent-color);
-      animation: slideDown 0.6s ease-out;
+    header h1 {
+      margin: 0;
+      color: #fff;
     }
 
-    .category, .serie, .film {
-      margin-bottom: 30px;
+    .section {
+      padding: 30px;
+    }
+
+    .section h2 {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .category {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .card {
       background-color: var(--card-bg);
-      padding: 20px;
       border-radius: 15px;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 76, 96, 0.1);
+      padding: 15px;
+      transition: transform 0.3s ease;
     }
 
-    .category:hover, .serie:hover, .film:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 25px rgba(255, 76, 96, 0.2);
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card h4 {
+      margin-top: 0;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
     }
 
     a {
-      color: var(--accent-color);
+      color: var(--primary);
       text-decoration: none;
       font-weight: bold;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: var(--hover);
     }
 
-    img {
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      border-radius: 10px;
-      margin-top: 10px;
-      transition: transform 0.3s ease;
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
 
-    img:hover {
-      transform: scale(1.05);
-    }
-
-    .episode-link {
-      margin-left: 20px;
-      display: inline-block;
-      margin-bottom: 5px;
-      transition: color 0.3s ease;
-    }
-
-    .episode-link:hover {
-      color: #ffa8b6;
+    li {
+      margin-bottom: 8px;
     }
 
     .download-button {
-      display: block;
-      width: fit-content;
-      margin: 40px auto 0;
-      padding: 15px 30px;
-      background-color: var(--accent-color);
-      color: white;
+      background-color: var(--primary);
+      color: #fff;
+      padding: 14px 28px;
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
+      display: block;
+      margin: 40px auto;
       transition: background-color 0.3s ease;
     }
 
     .download-button:hover {
-      background-color: #e53b4d;
+      background-color: var(--hover);
     }
 
-    @keyframes fadeInBody {
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      color: #888;
+      font-size: 0.9em;
+    }
+
+    @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
-    }
-
-    @keyframes slideDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <h1>Films</h1>
+  <header>
+    <h1>StreamZone - Films & Séries</h1>
+  </header>
 
-  <div class="category">
-    <h2>Aventure</h2>
-    <div class="film">
-      <h3>Kaizen 1 an pour gravir l'Everest</h3>
-      <a href="https://uqload.cx/xs1ywl4jdik2.html" target="_blank">Regarder</a>
-      <img src="https://fr.web.img5.acsta.net/r_1920_1080/img/b7/35/b7358d9bcfb70d922c4c3cb14d0bd447.jpg" alt="Kaizen">
+  <div class="section" id="films">
+    <h2>Films</h2>
+
+    <div class="category">
+      <div class="card">
+        <h4>M3GAN 2.0</h4>
+        <a href="https://uqload.cx/ojwyznqpnrrf.html" target="_blank">🎬 Regarder</a> |
+        <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/ojwyznqpnrrf.html" target="_blank">⬇ Télécharger</a>
+        <img src="https://fr.web.img2.acsta.net/r_1920_1080/img/26/79/2679bcaed012de828141034acf8898a5.jpg" alt="M3GAN 2.0" />
+      </div>
+
+      <div class="card">
+        <h4>Mia et le lion blanc</h4>
+        <a href="https://uqload.cx/wxc7nxxknduc.html" target="_blank">🎬 Regarder</a> |
+        <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/wxc7nxxknduc.html" target="_blank">⬇ Télécharger</a>
+        <img src="https://fr.web.img2.acsta.net/r_1920_1080/img/7b/96/7b9659ff764651b2409edc9a9b03e9c0.jpg" alt="Mia et le lion blanc" />
+      </div>
     </div>
   </div>
 
-  <div class="category">
-    <h2>Action</h2>
-    <div class="film">
-      <h3>M3GAN</h3>
-      <a href="https://uqload.cx/h840mhjf99h1.html" target="_blank">Regarder</a>
-      <img src="https://fr.web.img4.acsta.net/c_310_420/pictures/22/11/09/16/59/0189590.jpg" alt="M3GAN">
-    </div>
-    <div class="film">
-      <h3>Dragons (2025)</h3>
-      <a href="https://uqload.cx/rxbinw4h9mg8.html" target="_blank">Regarder</a>
-      <br>
-      <a href="http://www.netmovies-downloader.ct.ws/?url=https%3A%2F%2Fuqload.cx%2Frxbinw4h9mg8.html" target="_blank">Télécharger</a>
-      <img src="https://cinefilms-planet.fr/wp-content/uploads/2025/02/affiche-dragons-film-2025-01.jpg" alt="Dragons 2025">
-    </div>
-  </div>
+  <div class="section" id="series">
+    <h2>Séries</h2>
 
-  <h1>Séries</h1>
-
-  <div class="category">
-    <h2>Fantastique</h2>
-    <div class="serie">
-      <h3>Ironheart</h3>
-      <img src="https://fr.web.img6.acsta.net/r_1920_1080/img/9d/6e/9d6e542e748864c5e064c428a894f720.jpg" alt="Ironheart">
-      <h4>Saison 1</h4>
-      <ul>
-        <li><a class="episode-link" href="https://uqload.cx/djve4skjr4ep.html" target="_blank">Épisode 1</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/9d1vikc70a29.html" target="_blank">Épisode 2</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/9d1vikc70a29.html" target="_blank">Épisode 3</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/ry37zkzu2tvq.html" target="_blank">Épisode 4</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/4kgmx4vslh8o.html" target="_blank">Épisode 5</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/4b06z3r6aosu.html" target="_blank">Épisode 6</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="category">
-    <h2>Thriller</h2>
-    <div class="serie">
-      <h3>Squid Game</h3>
-      <img src="https://fr.web.img3.acsta.net/r_1920_1080/img/b4/6d/b46d660ec6b885e4b322f96e378781de.jpg" alt="Squid Game">
-      <h4>Saison 1</h4>
-      <ul>
-        <li><a class="episode-link" href="https://uqload.cx/417mu26rb2or.html" target="_blank">Épisode 1</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/vi8m103a2j06.html" target="_blank">Épisode 2</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/gic9i461nf23.html" target="_blank">Épisode 3</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/7qx7lm0ydipz.html" target="_blank">Épisode 4</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/7rjxohu6jgob.html" target="_blank">Épisode 5</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/3vi90co17kuk.html" target="_blank">Épisode 6</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/bec9saxt0vjb.html" target="_blank">Épisode 7</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/d1odp98zl2gy.html" target="_blank">Épisode 8</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/sol80b3waz1y.html" target="_blank">Épisode 9</a></li>
-      </ul>
-      <h4>Saison 2</h4>
-      <ul>
-        <li><a class="episode-link" href="https://uqload.cx/0fbe7q0rpxx3.html" target="_blank">Épisode 1</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/1tlnjwres8pj.html" target="_blank">Épisode 2</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/jwpq6orpyz0v.html" target="_blank">Épisode 3</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/vi2xyu0ktl9l.html" target="_blank">Épisode 4</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/8uii0up2bpnf.html" target="_blank">Épisode 5</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/0xn2qb2kah03.html" target="_blank">Épisode 6</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/ffsnqe16gk65.html" target="_blank">Épisode 7</a></li>
-      </ul>
-      <h4>Saison 3</h4>
-      <ul>
-        <li><a class="episode-link" href="https://uqload.cx/0vzqmocii63l.html" target="_blank">Épisode 1</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/06qcmrpl2a9d.html" target="_blank">Épisode 2</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/9vssl8mkykgj.html" target="_blank">Épisode 3</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/rtf0v5t7tkdb.html" target="_blank">Épisode 4</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/fh3rkpwp8j6l.html" target="_blank">Épisode 5</a></li>
-        <li><a class="episode-link" href="https://uqload.cx/2e46ixjulnxb.html" target="_blank">Épisode 6</a></li>
-      </ul>
+    <div class="category">
+      <div class="card">
+        <h4>Squid Game - Saison 3</h4>
+        <img src="https://fr.web.img5.acsta.net/r_1920_1080/img/fc/7e/fc7ef7f343b087537bd64b1925198a07.jpg" alt="Squid Game" />
+        <ul>
+          <li><a href="https://uqload.cx/06qcmrpl2a9d.html" target="_blank">Épisode 1</a> | <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/06qcmrpl2a9d.html" target="_blank">Télécharger</a></li>
+          <li><a href="https://uqload.cx/06qcmrpl2a9d.html" target="_blank">Épisode 2</a> | <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/06qcmrpl2a9d.html" target="_blank">Télécharger</a></li>
+          <li><a href="https://uqload.cx/9vssl8mkykgj.html" target="_blank">Épisode 3</a> | <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/9vssl8mkykgj.html" target="_blank">Télécharger</a></li>
+          <li><a href="https://uqload.cx/rtf0v5t7tkdb.html" target="_blank">Épisode 4</a> | <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/rtf0v5t7tkdb.html" target="_blank">Télécharger</a></li>
+          <li><a href="https://uqload.cx/fh3rkpwp8j6l.html" target="_blank">Épisode 5</a> | <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/fh3rkpwp8j6l.html" target="_blank">Télécharger</a></li>
+          <li><a href="https://uqload.cx/2e46ixjulnxb.html" target="_blank">Épisode 6</a> | <a href="http://www.netmovies-downloader.ct.ws/?url=https://uqload.cx/2e46ixjulnxb.html" target="_blank">Télécharger</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <button class="download-button" onclick="window.location.href='downoald.html';">
     Aller à l'option de téléchargement
   </button>
+
+  <footer>
+    &copy; 2025 StreamZone - Tous droits réservés.
+  </footer>
 
 </body>
 </html>
